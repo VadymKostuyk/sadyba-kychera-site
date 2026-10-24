@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173b2d">
+  <meta name="description" content="Садиба Кичера у Міжгір'ї, Закарпаття. Номери й будиночки з краєвидами на гори, чан із джакузі, екскурсії та відпочинок у Карпатах.">
+  <title>Садиба «Кичера» | Відпочинок у Карпатах</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#top" class="logo">Садиба "Кичера"</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#rooms" class="nav-link">Номери</a></li>
+                <li><a href="#services" class="nav-link">Послуги</a></li>
+                <li><a href="#attractions" class="nav-link">Локації</a></li>
+                <li><a href="#reviews" class="nav-link">Відгуки</a></li>
+                <li><a href="#contact" class="nav-link">Контакти</a></li>
+            </ul>
+            
+            <a href="tel:+380677659478" class="btn btn-primary nav-btn">
+                <i class="fas fa-phone"></i> Забронювати
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Відкрити меню" aria-controls="mobileMenu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-label="Мобільна навігація">
+        <a href="#rooms" class="mobile-link">Номери</a>
+        <a href="#services" class="mobile-link">Послуги</a>
+        <a href="#attractions" class="mobile-link">Локації</a>
+        <a href="#reviews" class="mobile-link">Відгуки</a>
+        <a href="#contact" class="mobile-link">Контакти</a>
+        <a href="tel:+380677659478" class="btn btn-primary">
+            <i class="fas fa-phone"></i> Забронювати
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <div class="hero-bg">
+            <img src="web/main.webp" alt="Карпати" fetchpriority="high" decoding="async">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>смт. Міжгір'я, Закарпаття, Україна</span>
+            </div>
+            <h1 class="hero-title">Садиба "Кичера"</h1>
+            <p class="hero-text">Відпочинок у серці Карпат з неймовірними краєвидами, затишними номерами та гостинністю</p>
+            <div class="hero-buttons">
+                <a href="tel:+380677659478" class="btn btn-primary btn-lg">
+                    <i class="fas fa-phone"></i> Забронювати зараз
+                </a>
+                <a href="#rooms" class="btn btn-outline btn-lg">Переглянути номери</a>
+            </div>
+        </div>
+        <a href="#rooms" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="section rooms">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наші номери</h2>
+                <p class="section-subtitle">Оберіть ідеальний варіант для вашого відпочинку в Карпатах</p>
+            </div>
+            
+            <div class="rooms-grid">
+                <!-- Room 1 -->
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img loading="lazy" decoding="async" src="web/room1.webp" alt="Кичера Еко"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" type="button" aria-label="Попереднє фото"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" type="button" aria-label="Наступне фото"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
+                        <span class="room-price">від 5000 грн/ніч</span>
+                    </div>
+                    <div class="gallery-caption" aria-live="polite"><span class="caption-text">Перегляньте фотографії номера</span><span class="gallery-count">1 / 1</span></div><div class="room-content">
+                        <h3 class="room-name">Кичера Еко</h3>
+                        <p class="room-desc">Чудовий вибір для усамітнення з природою. Екологічно чистий будиночок з натуральних матеріалів.</p>
+                        <div class="room-info">
+                            <span><i class="fas fa-users"></i> 6 гостей</span>
+                            <span><i class="fas fa-bed"></i> 2 двоспальні ліжка, диван-ліжко</span>
+                        </div>
+                        <div class="room-features">
+                            <span class="feature-tag">Вид на гори</span>
+                            <span class="feature-tag">Wi-Fi</span>
+                            <span class="feature-tag">Окремий вхід та територія</span>
+                            <span class="feature-tag">2 власні тераси та зона BBQ</span>
+                            <span class="feature-tag">Власне опалення, тепла підлога та кондиціонер</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" data-room-detail="1">Детальніше</button>
+                    </div>
+                </div>
+
+                <!-- Room 2 -->
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img loading="lazy" decoding="async" src="web/room2.webp" alt="Двокімнатний номер з видом на гори"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" type="button" aria-label="Попереднє фото"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" type="button" aria-label="Наступне фото"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
+                        <span class="room-price">від 3000 грн/ніч</span>
+                    </div>
+                    <div class="gallery-caption" aria-live="polite"><span class="caption-text">Перегляньте фотографії номера</span><span class="gallery-count">1 / 1</span></div><div class="room-content">
+                        <h3 class="room-name">Двокімнатний номер з видом на гори</h3>
+                        <p class="room-desc">Краєвиди, які вас зачарують. Просторий номер з окремою вітальнею та спальнею.</p>
+                        <div class="room-info">
+                            <span><i class="fas fa-users"></i> 4 гості</span>
+                            <span><i class="fas fa-bed"></i> 1 двоспальне ліжко, диван-ліжко</span>
+                        </div>
+                        <div class="room-features">
+                            <span class="feature-tag">Панорамний краєвид</span>
+                            <span class="feature-tag">Кухня з усім необхідним</span>
+                            <span class="feature-tag">Ванна кімната з пральною машиною</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" data-room-detail="2">Детальніше</button>
+                    </div>
+                </div>
+
+                <!-- Room 3 -->
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img loading="lazy" decoding="async" src="web/room3.webp" alt="Апартаменти Делюкс"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" type="button" aria-label="Попереднє фото"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" type="button" aria-label="Наступне фото"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
+                        <span class="room-price">від 4000 грн/ніч</span>
+                    </div>
+                    <div class="gallery-caption" aria-live="polite"><span class="caption-text">Перегляньте фотографії номера</span><span class="gallery-count">1 / 1</span></div><div class="room-content">
+                        <h3 class="room-name">Апартаменти Делюкс</h3>
+                        <p class="room-desc">Гарно підходить для великої компанії. Розкішні апартаменти з усіма зручностями.</p>
+                        <div class="room-info">
+                            <span><i class="fas fa-users"></i> 8 гостей</span>
+                            <span><i class="fas fa-bed"></i> 2 двоспальні ліжка, диван-ліжко, 2 односпальні диван-ліжка</span>
+                        </div>
+                        <div class="room-features">
+                            <span class="feature-tag">2 спальні кімнати</span>
+                            <span class="feature-tag">2 ванні кімнати</span>
+                            <span class="feature-tag">Повноцінна кухня з усім необхідним</span>
+                            <span class="feature-tag">Площа 100 м²</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" data-room-detail="3">Детальніше</button>
+                    </div>
+                </div>
+
+                <!-- Room 4 -->
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img loading="lazy" decoding="async" src="web/room4.webp" alt="Будиночок з двома спальнями"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" type="button" aria-label="Попереднє фото"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" type="button" aria-label="Наступне фото"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
+                        <span class="room-price">від 4000 грн/ніч</span>
+                    </div>
+                    <div class="gallery-caption" aria-live="polite"><span class="caption-text">Перегляньте фотографії номера</span><span class="gallery-count">1 / 1</span></div><div class="room-content">
+                        <h3 class="room-name">Будиночок з двома спальнями</h3>
+                        <p class="room-desc">Затишний та світлий будиночок для спокійного відпочинку сім'єю або компанією.</p>
+                        <div class="room-info">
+                            <span><i class="fas fa-users"></i> 4 гості</span>
+                            <span><i class="fas fa-bed"></i> 2 двоспальні ліжка</span>
+                        </div>
+                        <div class="room-features">
+                            <span class="feature-tag">Окремий вхід</span>
+                            <span class="feature-tag">Кухня</span>
+                            <span class="feature-tag">власна зона BBQ</span>
+                            <span class="feature-tag">Неймовірний панорамний краєвид на гори</span> 
+                        </div>
+                        <button class="btn btn-primary btn-full" data-room-detail="4">Детальніше</button>
+                    </div>
+                </div>
+
+                <!-- Room 5 -->
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img loading="lazy" decoding="async" src="web/room5.webp" alt="Затишний номер для двох"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" type="button" aria-label="Попереднє фото"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" type="button" aria-label="Наступне фото"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
+                        <span class="room-price">від 2000 грн/ніч</span>
+                    </div>
+                    <div class="gallery-caption" aria-live="polite"><span class="caption-text">Перегляньте фотографії номера</span><span class="gallery-count">1 / 1</span></div><div class="room-content">
+                        <h3 class="room-name">Затишний номер для двох</h3>
+                        <p class="room-desc">Двомісний номер з неймовірними краєвидами. Ідеальний для романтичного відпочинку.</p>
+                        <div class="room-info">
+                            <span><i class="fas fa-users"></i> 2 гості</span>
+                            <span><i class="fas fa-bed"></i> 1 двоспальне ліжко</span>
+                        </div>
+                        <div class="room-features">
+                            <span class="feature-tag">Вид на гори</span>
+                            <span class="feature-tag">Власна кухня та ванна кімната</span>
+                            <span class="feature-tag">Краєвид на гори</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" data-room-detail="5">Детальніше</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наші послуги</h2>
+                <p class="section-subtitle">Все для вашого комфортного відпочинку в Карпатах</p>
+            </div>
+
+            <!-- Featured Service - Hot Tub -->
+            <div class="featured-service">
+                <div class="featured-content">
+                    <div class="featured-text">
+                        <div class="featured-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Чан із джакузі</h3>
+                        <p>Відпочиньте в гарячому чані з неймовірним видом на гори. Ідеально для релаксації після активного дня.</p>
+                        <div class="price-box">
+                            <p class="price">3000 грн за сеанс (2,5 години)</p>
+                            <p class="price-note">Бронювання щонайменше за 4–5 годин наперед</p>
+                        </div>
+                        <a href="tel:+380677659478" class="btn btn-white">
+                            <i class="fas fa-phone"></i> Забронювати чан
+                        </a>
+                    </div>
+                    <div class="featured-image">
+                        <img loading="lazy" decoding="async" src="web/Hottube.webp" alt="Чан із джакузі">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h4>Екскурсії</h4>
+                    <p>Екскурсії по Закарпаттю: Буйволина ферма, Водоспад Шипіт, озеро Синевир та багато іншого. Скажіть, що з Садиби Кичера - отримаєте знижку!</p>
+                    <a href="tel:+380677659478" class="service-phone">
+                        <i class="fas fa-phone"></i> +380677659478
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h4>Трансфер</h4>
+                    <p>Трансфер до садиби з автовокзалу або залізничного вокзалу.</p>
+                    <a href="tel:+380677659478" class="service-phone">
+                        <i class="fas fa-phone"></i> +380677659478
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h4>Wi-Fi</h4>
+                    <p>Безкоштовний високошвидкісний Wi-Fi на всій території садиби.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-parking"></i>
+                    </div>
+                    <h4>Паркінг</h4>
+                    <p>Безкоштовна парковка для всіх гостей садиби.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h4>Мангал</h4>
+                    <p>Мангал з усім необхідним для приготування.</p>
+                </div>
+            </div>
+
+            <!-- Activities -->
+            <div class="activities-header">
+                <h3>Додаткові розваги</h3>
+            </div>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <img loading="lazy" decoding="async" src="web/Atv.webp" alt="Квадроцикли">
+                    <div class="activity-overlay"></div>
+                    <div class="activity-content">
+                        <i class="fas fa-motorcycle"></i>
+                        <h4>Катання на квадроциклах</h4>
+                        <p>Екстремальні прогулянки гірськими стежками з неймовірним краєвидом гір</p>
+                    </div>
+                </div>
+
+                <div class="activity-card">
+                    <img loading="lazy" decoding="async" src="web/walking.webp" alt="Прогулянки">
+                    <div class="activity-overlay"></div>
+                    <div class="activity-content">
+                        <i class="fas fa-tree"></i>
+                        <h4>Піші прогулянки</h4>
+                        <p>Мальовничі маршрути Карпатами</p>
+                    </div>
+                </div>
+
+                <div class="activity-card">
+                    <img loading="lazy" decoding="async" src="web/Fishing.webp" alt="Риболовля">
+                    <div class="activity-overlay"></div>
+                    <div class="activity-content">
+                        <i class="fas fa-fish"></i>
+                        <h4>Риболовля</h4>
+                        <p>Ловля форелі в гірських річках</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section id="attractions" class="section attractions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Місця, які варто відвідати</h2>
+                <p class="section-subtitle">Навколо садиби розташовані найкращі туристичні локації Закарпаття</p>
+            </div>
+
+            <!-- Featured Attractions -->
+            <div class="featured-attractions">
+                <a href="https://maps.google.com/?q=Озеро+Синевир+Україна" target="_blank" rel="noopener noreferrer" class="fattraction-card">
+                    <img loading="lazy" decoding="async" src="web/synevyr.webp" alt="Синевир">
+                    <div class="fattraction-overlay"></div>
+                    <div class="fattraction-content">
+                        <h3>СИНЕВИР <i class="fas fa-external-link-alt"></i></h3>
+                        <ul></ul>
+                        <span class="map-link"><i class="fas fa-location-arrow"></i> Відкрити на карті</span>
+                    </div>
+                </a>
+
+                <a href="https://maps.google.com/?q=Водоспад+Шипіт+Україна" target="_blank" rel="noopener noreferrer" class="fattraction-card">
+                    <img loading="lazy" decoding="async" src="web/shypit.webp" alt="Пилипець">
+                    <div class="fattraction-overlay"></div>
+                    <div class="fattraction-content">
+                        <h3>ПИЛИПЕЦЬ <i class="fas fa-external-link-alt"></i></h3>
+                        <ul></ul>
+                        <span class="map-link"><i class="fas fa-location-arrow"></i> Відкрити на карті</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Attractions Categories -->
+            <div class="attractions-grid">
+                <div class="attraction-category">
+                    <h4><i class="fas fa-map-marker-alt"></i> МІЖГІР'Я</h4>
+                    <ul>
+                        <li><a href="https://maps.google.com/?q=Канатна+дорога+Міжгір'я" target="_blank" rel="noopener noreferrer"><strong>Канатна дорога в Міжгір'ї</strong> - Оглядова канатна дорога на гору <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Холодний+гейзер+Міжгір'я" target="_blank" rel="noopener noreferrer"><strong>Холодний гейзер</strong> - Унікальний гейзер посеред лісу <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Мінеральне+джерело+Міжгір'я" target="_blank" rel="noopener noreferrer"><strong>Мінеральне джерело</strong> - Вода, насичена сірководнем <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=ЕКО+парк+Келечин" target="_blank" rel="noopener noreferrer"><strong>ЕКО парк Келечин</strong> - Мінеральне джерело з водою, насиченою залізом <i class="fas fa-external-link-alt"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="attraction-category">
+                    <h4><i class="fas fa-map-marker-alt"></i> СИНЕВИР</h4>
+                    <ul>
+                        <li><a href="https://maps.app.goo.gl/vAhDcnAphef6FSck8" target="_blank" rel="noopener noreferrer"><strong>Озеро Синевир</strong> - Перлина Карпат <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.app.goo.gl/UJpKGSZJQkGH4C1z7" target="_blank" rel="noopener noreferrer"><strong>Смачна колиба</strong> - Колиба біля озера <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.app.goo.gl/fVz4VoSvKxpsvc2R7" target="_blank" rel="noopener noreferrer"><strong>Центр реабілітації бурих ведмедів</strong> - Притулок для ведмедів <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.app.goo.gl/pDjw7kwKhtgjXJHKA" target="_blank" rel="noopener noreferrer"><strong>Екопарк долина вовків</strong> - Парк з вовками та іншими тваринами <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.app.goo.gl/L7eWAaRJSFsvWJGL6" target="_blank" rel="noopener noreferrer"><strong>Сироварня</strong> - Найсмачніша бринза в Карпатах <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.app.goo.gl/6PqLZ9TFnfCscZgp8" target="_blank" rel="noopener noreferrer"><strong>Парк з оленями, ламами та альпаками</strong> - Контактний зоопарк <i class="fas fa-external-link-alt"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="attraction-category">
+                    <h4><i class="fas fa-map-marker-alt"></i> ПИЛИПЕЦЬ</h4>
+                    <ul>
+                        <li><a href="https://maps.app.goo.gl/PMQL9bW9STD3XLza9" target="_blank" rel="noopener noreferrer"><strong>Водоспад Шипіт</strong> - Величний водоспад у горах <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.app.goo.gl/kJDE4A3KQe4gzxpZ8" target="_blank" rel="noopener noreferrer"><strong>Смачний рибний ресторан</strong> - Ресторан біля водоспаду <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.app.goo.gl/qYr2tdVbcKB8LRf87" target="_blank" rel="noopener noreferrer"><strong>Крісельна канатна дорога в Пилипці</strong> - Канатна дорога на гору <i class="fas fa-external-link-alt"></i></a></li>
+                    </ul>
+                </div>
+  
+                <div class="attraction-category">
+                    <h4><i class="fas fa-map-marker-alt"></i> КОЛОЧАВА</h4>
+                    <ul>
+                        <li><a href="https://maps.google.com/?q=Сироварня+Колочава" target="_blank" rel="noopener noreferrer"><strong>Сироварня</strong> - Найсмачніша бринза в районі <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Форелеве+господарство+Колочава" target="_blank" rel="noopener noreferrer"><strong>Форелеве господарство</strong> - Свіжа форель <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Етномузей+Старе+село+Колочава" target="_blank" rel="noopener noreferrer"><strong>Етномузей "Старе село"</strong> - Музей під відкритим небом <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Тереблеріцьке+Водосховище" target="_blank" rel="noopener noreferrer"><strong>Тереблеріцьке Водосховище</strong> - Гірське водосховище <i class="fas fa-external-link-alt"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="attraction-category">
+                    <h4><i class="fas fa-map-marker-alt"></i> ХУСТ</h4>
+                    <ul>
+                        <li><a href="https://maps.google.com/?q=Буйволина+ферма+Хуст" target="_blank" rel="noopener noreferrer"><strong>Буйволина ферма</strong> - Ферма з буйволами <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Равликова+ферма+Хуст" target="_blank" rel="noopener noreferrer"><strong>Равликова ферма</strong> - Екскурсія на равликову ферму <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Ранчо+Хайленд+Хуст" target="_blank" rel="noopener noreferrer"><strong>Ранчо Хайленд</strong> - Конні прогулянки <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Оленяча+ферма+Хуст" target="_blank" rel="noopener noreferrer"><strong>Оленяча ферма</strong> - Ферма з оленями <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Хустський+Замок" target="_blank" rel="noopener noreferrer"><strong>Хустський Замок</strong> - Історичний замок <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Rikka+Khyst+Хуст" target="_blank" rel="noopener noreferrer"><strong>Rikka Khyst</strong> - Відпочинковий комплекс <i class="fas fa-external-link-alt"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="attraction-category">
+                    <h4><i class="fas fa-map-marker-alt"></i> ТЕРМАЛЬНІ ДЖЕРЕЛА</h4>
+                    <ul>
+                        <li><a href="https://maps.google.com/?q=Термальні+води+Велятино" target="_blank" rel="noopener noreferrer"><strong>Термальні води Велятино</strong> - Гарячі джерела <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Термальні+води+Берегово" target="_blank" rel="noopener noreferrer"><strong>Термальні води Берегово</strong> - Басейни з термальною водою <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Термальні+води+Косино" target="_blank" rel="noopener noreferrer"><strong>Термальні води Косино</strong> - Аквапарк з термальними джерелами <i class="fas fa-external-link-alt"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="attraction-category">
+                    <h4><i class="fas fa-map-marker-alt"></i> ЗАМКИ</h4>
+                    <ul>
+                        <li><a href="https://maps.google.com/?q=Мукачівський+замок+Паланок" target="_blank" rel="noopener noreferrer"><strong>Мукачівський замок "Паланок"</strong> - Середньовічний замок <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Чинадіївський+замок+Сент+Мікорш" target="_blank" rel="noopener noreferrer"><strong>Чинадіївський замок "Сент Мікорш"</strong> - Руїни замку <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Палац+графів+Шернборнів" target="_blank" rel="noopener noreferrer"><strong>Палац графів Шернборнів</strong> - Мисливський палац <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://maps.google.com/?q=Ужгородський+замок" target="_blank" rel="noopener noreferrer"><strong>Ужгородський замок</strong> - Замок на замковій горі <i class="fas fa-external-link-alt"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Food Delivery -->
+            <div class="food-delivery">
+                <h3>Їжа з доставкою</h3>
+                <div class="delivery-tags">
+                    <a href="https://www.instagram.com/tsarskahora/" target="_blank" rel="noopener noreferrer" class="delivery-tag">Царська гора <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://www.instagram.com/michelles_travel_house/" target="_blank" rel="noopener noreferrer" class="delivery-tag">Mishelles Travel House <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://www.instagram.com/fortuna_restaurant_and_hotel/" target="_blank" rel="noopener noreferrer" class="delivery-tag">Фортуна <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://www.instagram.com/sushi.vid.anet/" target="_blank" rel="noopener noreferrer" class="delivery-tag">Доставка суші <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Відгуки наших гостей</h2>
+                <p class="section-subtitle">Що кажуть про нас ті, хто вже відпочив у садибі "Кичера"</p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Дуже затишно і неймовірна природа! Господарі дуже привітні, все чисто і комфортно. Обов'язково повернемось ще!</p>
+                    <p class="review-author">Олена К.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Чисто, привітні господарі, повернемось ще. Вид з вікна просто захоплює дух!</p>
+                    <p class="review-author">Іван М.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Неймовірні краєвиди і затишні умови, обов'язково повернемось ще! Чан із джакузі - це щось неймовірне.</p>
+                    <p class="review-author">Марія П.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Відпочинок на вищому рівні! Прекрасна локація, зручні номери, привітні господарі. Рекомендую всім!</p>
+                    <p class="review-author">Андрій С.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Чудове місце для відпочинку з родиною. Діти були в захваті від природи та квадроциклів.</p>
+                    <p class="review-author">Наталія В.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Найкраще місце в Карпатах! Затишно, тепло, смачно. Дякуємо за незабутній відпочинок!</p>
+                    <p class="review-author">Петро І.</p>
+                </div>
+            </div>
+
+            <div class="reviews-cta">
+                <a href="https://g.page/r/Cb1KcCz-mV6OEAI/review" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+                    <i class="fas fa-star"></i> Залишити відгук
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="section-title">Зв'яжіться з нами</h2>
+                    <p class="contact-subtitle">Ми завжди раді відповісти на ваші запитання та допомогти з бронюванням</p>
+
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Телефон</h4>
+                                <a href="tel:+380677659478">+38 (067) 765-94-78</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Адреса</h4>
+                                <p>смт. Міжгір'я, Закарпатська обл., Україна</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="footer-brand" href="#top">Садиба <span>«Кичера»</span></a>
+      <p>Міжгір'я, Закарпаття · Відпочинок серед Карпат</p>
+      <a href="tel:+380677659478"><i class="fa-solid fa-phone"></i> +38 (067) 765-94-78</a>
+      <a href="#top" class="back-to-top" aria-label="На початок сторінки"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+    <div class="container footer-bottom"><span>Затишок, гори та відпочинок у своєму ритмі.</span><span>© Садиба «Кичера»</span></div>
+  </footer>
+
+  <div class="room-modal" id="roomInfoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="roomModalTitle">
+    <div class="room-modal-panel">
+      <button class="modal-close" type="button" aria-label="Закрити опис номера"><i class="fa-solid fa-xmark"></i></button>
+      <div class="room-modal-kicker"><i class="fa-solid fa-mountain-sun"></i> Ваш відпочинок у Карпатах</div>
+      <h2 id="roomModalTitle">Опис номера</h2>
+      <p class="room-modal-description" id="roomModalDescription"></p>
+      <div class="room-modal-facts" id="roomModalFacts"></div>
+      <div class="room-modal-features" id="roomModalFeatures"></div>
+      <div class="room-modal-bottom"><p class="room-modal-price" id="roomModalPrice"></p><a class="btn btn-primary" href="tel:+380677659478"><i class="fa-solid fa-phone"></i> Уточнити наявність</a></div>
+      <p class="room-modal-note">Ціна вказана як стартова. Актуальну вартість на потрібні дати уточнюйте телефоном.</p>
+    </div>
+  </div>
+
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Перегляд фотографій номера">
+    <button class="lightbox-close" type="button" aria-label="Закрити фото"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox-btn lightbox-prev" type="button" aria-label="Попереднє фото"><i class="fa-solid fa-chevron-left"></i></button>
+    <figure class="lightbox-figure">
+      <img class="lightbox-content" id="lightboxImage" src="" alt="Збільшене фото номера">
+      <figcaption class="lightbox-caption"><span id="lightboxCaption"></span><span id="lightboxCounter"></span></figcaption>
+    </figure>
+    <button class="lightbox-btn lightbox-next" type="button" aria-label="Наступне фото"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+
+  <div class="mobile-booking-bar" aria-label="Швидке бронювання">
+    <span><i class="fa-solid fa-mountain-sun"></i> Плануєте відпочинок?</span>
+    <a href="tel:+380677659478"><i class="fa-solid fa-phone"></i> Зателефонувати</a>
+  </div>
+  <script src="main.js" defer></script>
+</body>
+</html>
