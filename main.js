@@ -157,87 +157,133 @@ function initModalClose() {
 /* ========================================
    ГАЛЕРЕЯ ФОТОГРАФІЙ
    ======================================== */
-function initGalleries() {
-    // Ініціалізуємо стан для кожної галереї
-    document.querySelectorAll('.gallery-slides').forEach(function(gallery) {
-        galleries[gallery.id] = {
-            currentIndex: 0,
-            slides: gallery.querySelectorAll('.gallery-slide').length
-        };
-    });
-}
+<script>
+        // Ініціалізація слайдерів номерів
+        document.querySelectorAll('.room-slider').forEach(slider => {
+            const track = slider.querySelector('.room-slider-track');
+            const slides = slider.querySelectorAll('.room-slide');
+            const dotsContainer = slider.querySelector('.slider-dots');
+            let currentIndex = 0;
 
-function changeSlide(galleryId, direction) {
-    const gallery = galleries[galleryId];
-    if (!gallery) return;
-    
-    let newIndex = gallery.currentIndex + direction;
-    
-    // Циклічна навігація
-    if (newIndex >= gallery.slides) {
-        newIndex = 0;
-    } else if (newIndex < 0) {
-        newIndex = gallery.slides - 1;
-    }
-    
-    currentSlide(galleryId, newIndex);
-}
+            // Якщо фото тільки 1, ховаємо стрілки та крапки
+            if (slides.length <= 1) {
+                const btns = slider.querySelectorAll('.slider-btn');
+                btns.forEach(btn => btn.style.display = 'none');
+            }
 
-function currentSlide(galleryId, index) {
-    const gallery = galleries[galleryId];
-    if (!gallery) return;
-    
-    gallery.currentIndex = index;
-    
-    // Оновлюємо слайди
-    const slides = document.querySelectorAll(`#${galleryId} .gallery-slide`);
-    slides.forEach(function(slide, i) {
-        slide.classList.toggle('active', i === index);
-    });
-    
-    // Оновлюємо точки
-    const dots = document.querySelectorAll(`#${galleryId} + .gallery-dots .dot, #${galleryId} ~ .gallery-dots .dot`);
-    dots.forEach(function(dot, i) {
-        dot.classList.toggle('active', i === index);
-    });
-}
+            // Додаємо крапки навігації
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.classList.add('slider-dot');
+                if (idx === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(slider, idx));
+                dotsContainer.appendChild(dot);
+            });
 
-// Свайп для мобільних пристроїв
-let touchStartX = 0;
-let touchEndX = 0;
+            // Відкриття фото в повному розмірі
+            slides.forEach((slide, idx) => {
+                slide.querySelector('img').addEventListener('click', () => {
+                    openLightbox(slider, idx);
+                });
+            });
 
-document.querySelectorAll('.gallery').forEach(function(gallery) {
-    gallery.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    
-    gallery.addEventListener('touchend', function(e) {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe(gallery);
-    }, { passive: true });
-});
+            // Підтримка свайпів на мобільних пристроях
+            let touchStartX = 0;
+            let touchEndX = 0;
 
-function handleSwipe(gallery) {
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
-    const gallerySlides = gallery.querySelector('.gallery-slides');
-    
-    if (!gallerySlides) return;
-    
-    const galleryId = gallerySlides.id;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-            // Свайп вліво - наступне фото
-            changeSlide(galleryId, 1);
-        } else {
-            // Свайп вправо - попереднє фото
-            changeSlide(galleryId, -1);
+            track.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+
+            track.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 40) moveSlideCustom(slider, 1);
+                if (touchEndX > touchStartX + 40) moveSlideCustom(slider, -1);
+            }, {passive: true});
+        });
+
+        function moveSlide(btn, direction) {
+            const slider = btn.closest('.room-slider');
+            moveSlideCustom(slider, direction);
         }
-    }
-}
 
-/* ========================================
+        function moveSlideCustom(slider, direction) {
+            const track = slider.querySelector('.room-slider-track');
+            const slides = track.querySelectorAll('.room-slide');
+            const dots = slider.querySelectorAll('.slider-dot');
+            let current = parseInt(slider.dataset.currentIndex || 0);
+
+            current += direction;
+            if (current < 0) current = slides.length - 1;
+            if (current >= slides.length) current = 0;
+
+            slider.dataset.currentIndex = current;
+            track.style.transform = `translateX(-${current * 100}%)`;
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === current);
+            });
+        }
+
+        function goToSlide(slider, index) {
+            const track = slider.querySelector('.room-slider-track');
+            const dots = slider.querySelectorAll('.slider-dot');
+            const slides = track.querySelectorAll('.room-slide');
+
+            if (index < 0 || index >= slides.length) return;
+
+            slider.dataset.currentIndex = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === index);
+            });
+        }
+
+        // Повноекранний перегляд (Lightbox)
+        let activeLightboxSlider = null;
+        let activeLightboxIndex = 0;
+
+        function openLightbox(slider, index) {
+            activeLightboxSlider = slider;
+            activeLightboxIndex = index;
+            updateLightboxImage();
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        function changeLightboxSlide(direction) {
+            if (!activeLightboxSlider) return;
+            const slides = activeLightboxSlider.querySelectorAll('.room-slide');
+            activeLightboxIndex += direction;
+            if (activeLightboxIndex < 0) activeLightboxIndex = slides.length - 1;
+            if (activeLightboxIndex >= slides.length) activeLightboxIndex = 0;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            if (!activeLightboxSlider) return;
+            const slides = activeLightboxSlider.querySelectorAll('.room-slide');
+            const imgSrc = slides[activeLightboxIndex].querySelector('img').src;
+            document.getElementById('lightboxImage').src = imgSrc;
+        }
+
+        document.getElementById('lightboxModal').addEventListener('click', (e) => {
+            if (e.target.id === 'lightboxModal') closeLightbox();
+        });
+
+        // Перемикач мобільного меню
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+    </script>/* ========================================
    АНІМАЦІЇ ПРИ СКРОЛІ
    ======================================== */
 // Intersection Observer для анімацій елементів при скролі
