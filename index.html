@@ -7,6 +7,143 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стилі для збільшених фото номерів та інтерактивної галереї */
+        .room-slider {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+            background: #f0f0f0;
+        }
+        @media (min-width: 768px) {
+            .room-slider {
+                height: 330px;
+            }
+        }
+        .room-slider-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            height: 100%;
+        }
+        .room-slide {
+            min-width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .room-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            transition: background 0.3s;
+            z-index: 2;
+        }
+        .slider-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .slider-prev { left: 10px; }
+        .slider-next { right: 10px; }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 2;
+        }
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        .slider-dot.active {
+            background: #ffffff;
+            width: 22px;
+            border-radius: 4px;
+        }
+
+        /* Повноекранна галерея (Lightbox) */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-modal.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 92%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            font-size: 22px;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .lightbox-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .lightbox-prev { left: 15px; }
+        .lightbox-next { right: 15px; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -78,8 +215,13 @@
             <div class="rooms-grid">
                 <!-- Room 1 -->
                 <div class="room-card">
-                    <div class="room-image">
-                        <img src="room1.jpg" alt="Кичера Еко">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img src="room1.jpg" alt="Кичера Еко"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" onclick="moveSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" onclick="moveSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
                         <span class="room-price">від 5000 грн/ніч</span>
                     </div>
                     <div class="room-content">
@@ -102,8 +244,13 @@
 
                 <!-- Room 2 -->
                 <div class="room-card">
-                    <div class="room-image">
-                        <img src="room2.jpg" alt="Двокімнатний номер з видом на гори">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img src="room2.jpg" alt="Двокімнатний номер з видом на гори"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" onclick="moveSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" onclick="moveSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
                         <span class="room-price">від 3000 грн/ніч</span>
                     </div>
                     <div class="room-content">
@@ -124,8 +271,13 @@
 
                 <!-- Room 3 -->
                 <div class="room-card">
-                    <div class="room-image">
-                        <img src="room3.jpg" alt="Апартаменти Делюкс">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img src="room3.jpg" alt="Апартаменти Делюкс"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" onclick="moveSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" onclick="moveSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
                         <span class="room-price">від 4000 грн/ніч</span>
                     </div>
                     <div class="room-content">
@@ -147,8 +299,13 @@
 
                 <!-- Room 4 -->
                 <div class="room-card">
-                    <div class="room-image">
-                        <img src="room4.jpg" alt="Будиночок з двома спальнями">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img src="room4.jpg" alt="Будиночок з двома спальнями"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" onclick="moveSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" onclick="moveSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
                         <span class="room-price">від 4000 грн/ніч</span>
                     </div>
                     <div class="room-content">
@@ -163,7 +320,6 @@
                             <span class="feature-tag">Кухня</span>
                             <span class="feature-tag">власна зона BBQ</span>
                             <span class="feature-tag">Неймовірний панорамний краєаид на гори</span> 
-                            </span>
                         </div>
                         <button class="btn btn-primary btn-full" onclick="openModal('modal4')">Детальніше</button>
                     </div>
@@ -171,8 +327,13 @@
 
                 <!-- Room 5 -->
                 <div class="room-card">
-                    <div class="room-image">
-                        <img src="room5.jpg" alt="Затишний номер для двох">
+                    <div class="room-slider">
+                        <div class="room-slider-track">
+                            <div class="room-slide"><img src="room5.jpg" alt="Затишний номер для двох"></div>
+                        </div>
+                        <button class="slider-btn slider-prev" onclick="moveSlide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn slider-next" onclick="moveSlide(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <div class="slider-dots"></div>
                         <span class="room-price">від 2000 грн/ніч</span>
                     </div>
                     <div class="room-content">
@@ -327,9 +488,7 @@
                     <div class="fattraction-overlay"></div>
                     <div class="fattraction-content">
                         <h3>СИНЕВИР <i class="fas fa-external-link-alt"></i></h3>
-                        <ul>
-                           
-                        </ul>
+                        <ul></ul>
                         <span class="map-link"><i class="fas fa-location-arrow"></i> Відкрити на карті</span>
                     </div>
                 </a>
@@ -339,9 +498,7 @@
                     <div class="fattraction-overlay"></div>
                     <div class="fattraction-content">
                         <h3>ПИЛИПЕЦЬ <i class="fas fa-external-link-alt"></i></h3>
-                        <ul>
-                      
-                        </ul>
+                        <ul></ul>
                         <span class="map-link"><i class="fas fa-location-arrow"></i> Відкрити на карті</span>
                     </div>
                 </a>
@@ -448,11 +605,7 @@
                     <div class="review-header">
                         <i class="fas fa-quote-left quote-icon"></i>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">Дуже затишно і неймовірна природа! Господарі дуже привітні, все чисто і комфортно. Обов'язково повернемось ще!</p>
@@ -463,11 +616,7 @@
                     <div class="review-header">
                         <i class="fas fa-quote-left quote-icon"></i>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">Чисто, привітні господарі, повернемось ще. Вид з вікна просто захоплює дух!</p>
@@ -478,11 +627,7 @@
                     <div class="review-header">
                         <i class="fas fa-quote-left quote-icon"></i>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">Неймовірні краєвиди і затишні умови, обов'язково повернемось ще! Чан із джакузі - це щось неймовірне.</p>
@@ -493,11 +638,7 @@
                     <div class="review-header">
                         <i class="fas fa-quote-left quote-icon"></i>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">Відпочинок на вищому рівні! Прекрасна локація, зручні номери, привітні господарі. Рекомендую всім!</p>
@@ -508,11 +649,7 @@
                     <div class="review-header">
                         <i class="fas fa-quote-left quote-icon"></i>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">Чудове місце для відпочинку з родиною. Діти були в захваті від природи та квадроциклів.</p>
@@ -523,11 +660,7 @@
                     <div class="review-header">
                         <i class="fas fa-quote-left quote-icon"></i>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">Найкраще місце в Карпатах! Затишно, тепло, смачно. Дякуємо за незабутній відпочинок!</p>
@@ -557,498 +690,160 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="contact-text">
-                                <span class="contact-label">Телефон для бронювання</span>
-                                <a href="tel:+380677659478" class="contact-value">+38 067 765 94 78</a>
+                                <h4>Телефон</h4>
+                                <a href="tel:+380677659478">+38 (067) 765-94-78</a>
                             </div>
                         </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span class="contact-label">Екскурсії</span>
-                                <a href="tel:+380981181150" class="contact-value">+38 067 765 94 78</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span class="contact-label">Email</span>
-                                <a href="mailto:wadim.r.k.36@gmail.com" class="contact-value">wadim.r.k.36@gmail.com</a>
-                            </div>
-                        </div>
-
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="contact-text">
-                                <span class="contact-label">Адреса</span>
-                                <span class="contact-value">Закарпатська область, Міжгірський район<br>смт.Міжгір'я, вул.Заводська 28</span>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span class="contact-label">Час заїзду/виїзду</span>
-                                <span class="contact-value">Заїзд: 14:00 | Виїзд: 11:00</span>
+                                <h4>Адреса</h4>
+                                <p>смт. Міжгір'я, Закарпатська обл., Україна</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="social-links">
-                        <p class="social-label">Ми у соціальних мережах</p>
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/sadyba_kychera_vip?igsh=MTVqcGVvMTE3YnR6cQ%3D%3D&utm_source=qr" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.facebook.com/share/168rGaR6UJ/?mibextid=wwXIfr" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.tiktok.com/@sadybakychera?_t=ZM-8vsdU0omoWF&_r=1" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-map">
-                    <iframe 
-                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.377539504157!2d23.5084435764451!3d48.52331877128859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4739dd44b8d8d921%3A0x8e5e99fe2c704abd!2z0KfQsNC9INCh0LDQtNC40LHQsCDQmtC40YfQtdGA0LA!5e1!3m2!1suk!2sua!4v1770558449431!5m2!1suk!2sua"
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about">
-                    <h3 class="footer-logo">Садиба "Кичера"</h3>
-                    <p class="footer-text">Відпочинок у серці Карпат з неймовірними краєвидами, затишними номерами та гостинністю. Ідеальне місце для релаксації та активного відпочинку.</p>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/sadyba_kychera_vip?igsh=MTVqcGVvMTE3YnR6cQ%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/share/168rGaR6UJ/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.tiktok.com/@sadybakychera?_t=ZM-8vsdU0omoWF&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-nav">
-                    <h4>Навігація</h4>
-                    <ul>
-                        <li><a href="#rooms">Номери</a></li>
-                        <li><a href="#services">Послуги</a></li>
-                        <li><a href="#attractions">Локації</a></li>
-                        <li><a href="#reviews">Відгуки</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-contact">
-                    <h4>Контакти</h4>
-                    <ul>
-                        <li><a href="tel:+380677659478"><i class="fas fa-phone"></i> +38 067 765 94 78</a></li>
-                        <li><a href="mailto:wadim.r.k.36@gmail.com"><i class="fas fa-envelope"></i> wadim.r.k.36@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Закарпаття, Міжгірський район, смт. Міжгір'я,вул.Заводська,28</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Садиба "Кичера". Усі права захищено.</p>
-                <a href="https://g.page/r/Cb1KcCz-mV6OEAI/review" target="_blank">Залишити відгук на Google</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Room Modals with Photo Gallery -->
-    <!-- Modal 1 - Кичера Еко -->
-    <div class="modal" id="modal1">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
-            
-            <!-- Photo Gallery -->
-            <div class="gallery">
-                <div class="gallery-slides" id="gallery1">
-                    <div class="gallery-slide active">
-                        <img src="room1-2.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-3.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-4.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-5.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-6.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-7.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-8.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-9.jpg" alt="Кичера Еко">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room1-10.jpg" alt="Кичера Еко">
-                    </div>
-                </div>
-                <button class="gallery-prev" onclick="changeSlide('gallery1', -1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="gallery-next" onclick="changeSlide('gallery1', 1)"><i class="fas fa-chevron-right"></i></button>
-                <div class="gallery-dots">
-                    <span class="dot active" onclick="currentSlide('gallery1', 0)"></span>
-                    <span class="dot" onclick="currentSlide('gallery1', 1)"></span>
-                    <span class="dot" onclick="currentSlide('gallery1', 2)"></span>
-                </div>
-            </div>
-
-            <div class="modal-body">
-                <h2>Кичера Еко</h2>
-                <p>Чудовий вибір для усамітнення з природою. Екологічно чистий номер з натуральних матеріалів.</p>
-                <div class="modal-info">
-                    <p><i class="fas fa-users"></i> <strong>Гостей:</strong> 6</p>
-                    <p><i class="fas fa-bed"></i> <strong>Ліжка:</strong> 2 двоспальні ліжка, диван-ліжко</p>
-                </div>
-                <div class="modal-features">
-                    <h4>Зручності:</h4>
-                    <div class="feature-list">
-                        <span class="feature-tag">Вид на гори</span>
-                        <span class="feature-tag">Wi-Fi</span>
-                        <span class="feature-tag">Окремий вхід та територія</span>
-                        <span class="feature-tag">2 власні тераси та зона BBQ</span>
-                        <span class="feature-tag">Власне опалення,тепла підлога та кондиціонер</span>
-                    </div>
-                </div>
-                <div class="modal-price">
-                    <span class="price-label">Ціна:</span>
-                    <span class="price-value">від 5000 грн/ніч</span>
-                </div>
-                <a href="tel:+380677659478" class="btn btn-primary btn-full">
-                    <i class="fas fa-phone"></i> Забронювати
-                </a>
-            </div>
-        </div>
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-btn lightbox-prev" onclick="changeLightboxSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <img class="lightbox-content" id="lightboxImage" src="" alt="Збільшене фото">
+        <button class="lightbox-btn lightbox-next" onclick="changeLightboxSlide(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <!-- Modal 2 - Двокімнатний з видом на гори -->
-    <div class="modal" id="modal2">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
-            
-            <div class="gallery">
-                <div class="gallery-slides" id="gallery2">
-                    <div class="gallery-slide active">
-                        <img src="room2-2.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-3.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-4.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-5.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-6.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-7.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-8.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-9.jpg" alt="Двокімнатний номер">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room2-10.jpg" alt="Двокімнатний номер">
-                    </div>
-                </div>
-                <button class="gallery-prev" onclick="changeSlide('gallery2', -1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="gallery-next" onclick="changeSlide('gallery2', 1)"><i class="fas fa-chevron-right"></i></button>
-                <div class="gallery-dots">
-                    <span class="dot active" onclick="currentSlide('gallery2', 0)"></span>
-                    <span class="dot" onclick="currentSlide('gallery2', 1)"></span>
-                    <span class="dot" onclick="currentSlide('gallery2', 2)"></span>
-                </div>
-            </div>
+    <!-- JavaScript для слайдера, свайпів та мобільного меню -->
+    <script>
+        // Ініціалізація слайдерів номерів
+        document.querySelectorAll('.room-slider').forEach(slider => {
+            const track = slider.querySelector('.room-slider-track');
+            const slides = slider.querySelectorAll('.room-slide');
+            const dotsContainer = slider.querySelector('.slider-dots');
+            let currentIndex = 0;
 
-            <div class="modal-body">
-                <h2>Двокімнатний з видом на гори</h2>
-                <p>Краєвиди, які вас зачарують. Просторий номер з окремою вітальнею та спальнею.</p>
-                <div class="modal-info">
-                    <p><i class="fas fa-users"></i> <strong>Гостей:</strong> 4</p>
-                    <p><i class="fas fa-bed"></i> <strong>Ліжка:</strong> 1 двоспальне ліжко, 1 диван-ліжко</p>
-                </div>
-                <div class="modal-features">
-                    <h4>Зручності:</h4>
-                    <div class="feature-list">
-                        <span class="feature-tag">Панорамний краєвид</span>
-                        <span class="feature-tag">Кухня з усім необхідним</span>
-                        <span class="feature-tag">Ванна кімната з пральною машиною</span>
-                    </div>
-                </div>
-                <div class="modal-price">
-                    <span class="price-label">Ціна:</span>
-                    <span class="price-value">від 3000 грн/ніч</span>
-                </div>
-                <a href="tel:+380677659478" class="btn btn-primary btn-full">
-                    <i class="fas fa-phone"></i> Забронювати
-                </a>
-            </div>
-        </div>
-    </div>
+            // Якщо фото тільки 1, ховаємо стрілки та крапки
+            if (slides.length <= 1) {
+                const btns = slider.querySelectorAll('.slider-btn');
+                btns.forEach(btn => btn.style.display = 'none');
+            }
 
-    <!-- Modal 3 - Апартаменти Делюкс -->
-    <div class="modal" id="modal3">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
-            
-            <div class="gallery">
-                <div class="gallery-slides" id="gallery3">
-                    <div class="gallery-slide active">
-                        <img src="room3-2.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-3.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-4.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-5.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-6.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-7.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-8.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-9.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-10.jpg" alt="Делюкс">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room3-11.jpg" alt="Делюкс">
-                    </div>
-                </div>
-                <button class="gallery-prev" onclick="changeSlide('gallery3', -1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="gallery-next" onclick="changeSlide('gallery3', 1)"><i class="fas fa-chevron-right"></i></button>
-                <div class="gallery-dots">
-                    <span class="dot active" onclick="currentSlide('gallery3', 0)"></span>
-                    <span class="dot" onclick="currentSlide('gallery3', 1)"></span>
-                    <span class="dot" onclick="currentSlide('gallery3', 2)"></span>
-                </div>
-            </div>
+            // Додаємо крапки навігації
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.classList.add('slider-dot');
+                if (idx === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(slider, idx));
+                dotsContainer.appendChild(dot);
+            });
 
-            <div class="modal-body">
-                <h2>Апартаменти Делюкс</h2>
-                <p>Гарно підходить для великої компанії. Розкішні апартаменти з усіма зручностями.</p>
-                <div class="modal-info">
-                    <p><i class="fas fa-users"></i> <strong>Гостей:</strong> 8</p>
-                    <p><i class="fas fa-bed"></i> <strong>Ліжка:</strong> 2 двоспальні ліжка, диван-ліжко, 2 односпальні диван-ліжка</p>
-                </div>
-                <div class="modal-features">
-                    <h4>Зручності:</h4>
-                    <div class="feature-list">
-                        <span class="feature-tag">2 спальні кімнати</span>
-                            <span class="feature-tag">2 ванні кімнати</span>
-                            <span class="feature-tag">повноцінна кухня з усім необхідним</span>
-                            <span class="feature-tag">площа - 100 м.кв.</span>
-                    </div>
-                </div>
-                <div class="modal-price">
-                    <span class="price-label">Ціна:</span>
-                    <span class="price-value">від 4000 грн/ніч</span>
-                </div>
-                <a href="tel:+380677659478" class="btn btn-primary btn-full">
-                    <i class="fas fa-phone"></i> Забронювати
-                </a>
-            </div>
-        </div>
-    </div>
+            // Відкриття фото в повному розмірі
+            slides.forEach((slide, idx) => {
+                slide.querySelector('img').addEventListener('click', () => {
+                    openLightbox(slider, idx);
+                });
+            });
 
-    <!-- Modal 4 - Будиночок з двома спальнями -->
-    <div class="modal" id="modal4">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
-            
-            <div class="gallery">
-                <div class="gallery-slides" id="gallery4">
-                    <div class="gallery-slide active">
-                        <img src="room4-2.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-3.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-4.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-5.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-6.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-7.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-8.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-9.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-10.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-11.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-12.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-13.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-14.jpg" alt="Будиночок">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room4-16.jpg" alt="Будиночок">
-                    </div>
-                </div>
-                <button class="gallery-prev" onclick="changeSlide('gallery4', -1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="gallery-next" onclick="changeSlide('gallery4', 1)"><i class="fas fa-chevron-right"></i></button>
-                <div class="gallery-dots">
-                    <span class="dot active" onclick="currentSlide('gallery4', 0)"></span>
-                    <span class="dot" onclick="currentSlide('gallery4', 1)"></span>
-                    <span class="dot" onclick="currentSlide('gallery4', 2)"></span>
-                </div>
-            </div>
+            // Підтримка свайпів на мобільних пристроях
+            let touchStartX = 0;
+            let touchEndX = 0;
 
-            <div class="modal-body">
-                <h2>Будиночок з двома спальнями</h2>
-                <p>Затишний та світлий будиночок для спокійного відпочинку сімєю або компанією.</p>
-                <div class="modal-info">
-                    <p><i class="fas fa-users"></i> <strong>Гостей:</strong> 4</p>
-                    <p><i class="fas fa-bed"></i> <strong>Ліжка:</strong> 2 двоспальні ліжка</p>
-                </div>
-                <div class="modal-features">
-                    <h4>Зручності:</h4>
-                    <div class="feature-list">
-                        <span class="feature-tag">Окремий вхід</span>
-                        <span class="feature-tag">Кухня</span>
-                        <span class="feature-tag">власна зона BBQ</span>
-                        <span class="feature-tag">Неймовірний панорамний краєаид на гори</span>
-                    </div>
-                </div>
-                <div class="modal-price">
-                    <span class="price-label">Ціна:</span>
-                    <span class="price-value">від 4000 грн/ніч</span>
-                </div>
-                <a href="tel:+380677659478" class="btn btn-primary btn-full">
-                    <i class="fas fa-phone"></i> Забронювати
-                </a>
-            </div>
-        </div>
-    </div>
+            track.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
 
-    <!-- Modal 5 - Затишний номер для двох -->
-    <div class="modal" id="modal5">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
-            
-            <div class="gallery">
-                <div class="gallery-slides" id="gallery5">
-                    <div class="gallery-slide active">
-                        <img src="room5-2.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-3.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-4.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-5.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-6.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-7.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-8.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-9.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-10.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-11.jpg" alt="Номер для двох">
-                    </div>
-                    <div class="gallery-slide">
-                        <img src="room5-12.jpg" alt="Номер для двох">
-                    </div>
-                </div>
-                <button class="gallery-prev" onclick="changeSlide('gallery5', -1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="gallery-next" onclick="changeSlide('gallery5', 1)"><i class="fas fa-chevron-right"></i></button>
-                <div class="gallery-dots">
-                    <span class="dot active" onclick="currentSlide('gallery5', 0)"></span>
-                    <span class="dot" onclick="currentSlide('gallery5', 1)"></span>
-                    <span class="dot" onclick="currentSlide('gallery5', 2)"></span>
-                </div>
-            </div>
+            track.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 40) moveSlideCustom(slider, 1);
+                if (touchEndX > touchStartX + 40) moveSlideCustom(slider, -1);
+            }, {passive: true});
+        });
 
-            <div class="modal-body">
-                <h2>Затишний номер для двох</h2>
-                <p>Двомісний номер з неймовірними краєвидами. Ідеальний для романтичного відпочинку.</p>
-                <div class="modal-info">
-                    <p><i class="fas fa-users"></i> <strong>Гостей:</strong> 2</p>
-                    <p><i class="fas fa-bed"></i> <strong>Ліжка:</strong> 1 двоспальне ліжко</p>
-                </div>
-                <div class="modal-features">
-                    <h4>Зручності:</h4>
-                    <div class="feature-list">
-                        <span class="feature-tag">Вид на гори</span>
-                        <span class="feature-tag">Власна кухня та ванна кімната</span>
-                        <span class="feature-tag">Краєвид нв гори</span>
-                    </div>
-                </div>
-                <div class="modal-price">
-                    <span class="price-label">Ціна:</span>
-                    <span class="price-value">від 2000 грн/ніч</span>
-                </div>
-                <a href="tel:+380677659478" class="btn btn-primary btn-full">
-                    <i class="fas fa-phone"></i> Забронювати
-                </a>
-            </div>
-        </div>
-    </div>
+        function moveSlide(btn, direction) {
+            const slider = btn.closest('.room-slider');
+            moveSlideCustom(slider, direction);
+        }
 
-    <script src="main.js"></script>
+        function moveSlideCustom(slider, direction) {
+            const track = slider.querySelector('.room-slider-track');
+            const slides = track.querySelectorAll('.room-slide');
+            const dots = slider.querySelectorAll('.slider-dot');
+            let current = parseInt(slider.dataset.currentIndex || 0);
+
+            current += direction;
+            if (current < 0) current = slides.length - 1;
+            if (current >= slides.length) current = 0;
+
+            slider.dataset.currentIndex = current;
+            track.style.transform = `translateX(-${current * 100}%)`;
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === current);
+            });
+        }
+
+        function goToSlide(slider, index) {
+            const track = slider.querySelector('.room-slider-track');
+            const dots = slider.querySelectorAll('.slider-dot');
+            const slides = track.querySelectorAll('.room-slide');
+
+            if (index < 0 || index >= slides.length) return;
+
+            slider.dataset.currentIndex = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === index);
+            });
+        }
+
+        // Повноекранний перегляд (Lightbox)
+        let activeLightboxSlider = null;
+        let activeLightboxIndex = 0;
+
+        function openLightbox(slider, index) {
+            activeLightboxSlider = slider;
+            activeLightboxIndex = index;
+            updateLightboxImage();
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        function changeLightboxSlide(direction) {
+            if (!activeLightboxSlider) return;
+            const slides = activeLightboxSlider.querySelectorAll('.room-slide');
+            activeLightboxIndex += direction;
+            if (activeLightboxIndex < 0) activeLightboxIndex = slides.length - 1;
+            if (activeLightboxIndex >= slides.length) activeLightboxIndex = 0;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            if (!activeLightboxSlider) return;
+            const slides = activeLightboxSlider.querySelectorAll('.room-slide');
+            const imgSrc = slides[activeLightboxIndex].querySelector('img').src;
+            document.getElementById('lightboxImage').src = imgSrc;
+        }
+
+        document.getElementById('lightboxModal').addEventListener('click', (e) => {
+            if (e.target.id === 'lightboxModal') closeLightbox();
+        });
+
+        // Перемикач мобільного меню
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+    </script>
 </body>
 </html>
